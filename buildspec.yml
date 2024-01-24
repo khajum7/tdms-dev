@@ -12,5 +12,6 @@ post_build:
     - echo "Deploying to Lambda..."
     - aws lambda update-function-code --function-name Testing-CICD --zip-file fileb://deployment_package.zip
 
+
 artifacts:
   files: deployment_package.zip
