@@ -3,8 +3,9 @@ phases:
   build:
     commands:
       - echo "Zipping deployment package..."
-      - git clone https://github.com/khajum7/tdms-dev/index.html
+      - git clone https://github.com/khajum7/tdms-dev.git
       - zip -r9 deployment_package.zip tdms-dev/*
+
       
 post_build:
   commands:
