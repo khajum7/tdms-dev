@@ -8,9 +8,9 @@ phases:
       
 post_build:
   commands:
-    - aws --version
     - echo "Deploying to Lambda..."
-    - aws lambda update-function-code --function-name Testing-CICD --zip-file fileb://deployment_package.zip
+    - aws lambda update-function-code --function-name Testing-CICD --zip-file fileb://deployment_package.zip --debug
+
 
 
 artifacts:
