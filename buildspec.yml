@@ -9,7 +9,7 @@ phases:
       
 post_build:
   commands:
-    - echo "Deploying to Lambda..."
+    - echo "Deploying to Lambda from keshab..."
     - aws lambda update-function-code --function-name Testing-CICD --zip-file fileb://deployment_package.zip --debug
 
 
