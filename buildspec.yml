@@ -7,6 +7,9 @@ phases:
       - zip -r9 deployment_package.zip tdms-dev/*
 
       ok ok
+  update is on
+      
+
 post_build:
   commands:
 
