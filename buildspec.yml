@@ -10,7 +10,7 @@ phases:
 post_build:
   commands:
 
-    - echo "Deploying to Lambda wait..."
+    - echo "Deploying to Lambda wasdafadsit..."
   
 
     - echo "Deploying to Lambda from kejghshab..."
