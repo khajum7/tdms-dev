@@ -5,7 +5,11 @@ phases:
       - echo "Zipping deployment package..."
       - git clone https://github.com/khajum7/tdms-dev.git
       - zip -r9 deployment_package.zip tdms-dev/*sss
+
+      idjeioene
+
        good to know 
+
       ok ok
   update is on
       
