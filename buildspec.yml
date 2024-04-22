@@ -24,6 +24,6 @@ jobs:
     
     - name: Deploy to Lambda
       run: |
-        aws lambda update-function-code --function-name Testing-CICD --zip-file fileb://path/to/your/lambda.zip --region your-region
+        aws lambda update-function-code --function-name Testing-CICD --zip-file fileb://path/to/your/lambda.zip --region us-west-1
       env:
         AWS_DEFAULT_REGION: us-west-1
