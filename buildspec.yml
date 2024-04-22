@@ -1,30 +1,29 @@
-version: 0.2
-phases:
-  build:
-    commands:
-      - echo "Zipping deployment package..."
-      - git clone https://github.com/khajum7/tdms-dev.git
-      - zip -r9 deploymedddddnt_package.zip tdms-dev/*sss
+name: Deploy Python Lambda
 
-      idjeioene
+on:
+  push:
+    branches:
+      - staging  
 
-       good to know 
-
-      ok ok
-  update is on
-      
-
-post_build:
-  commands:
-
-    - echo "Deploying to Lambda wasdafadsit..."
-  
-
-    - echo "Deploying to Lambda from kejghshab..."
-  - echo "Deploying to Lambda from kejghshab..."
-    - aws lambda update-function-code --function-name Testing-CICD --zip-file fileb://deployment_package.zip --debug
-
-
-
-artifacts:
-  files: deployment_package.zip
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.9'  # Choose the Python version you want to use
+    
+    - name: Install dependencies
+      run: |
+        pip install -r requirements.txt
+    
+    - name: Deploy to Lambda
+      run: |
+        aws lambda update-function-code --function-name Testing-CICD --zip-file fileb://path/to/your/lambda.zip --region us-west-1
+      env:
+        AWS_DEFAULT_REGION: us-west-1
