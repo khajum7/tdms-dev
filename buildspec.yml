@@ -1,28 +1,53 @@
-name: Deploy Python Lambda
+version: 0.2
 
-on:
-  push:
-    branches:
-      - staging
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
+phases:
+  install:
+    runtime-versions:
+      python: 3.9
+    commands:
+      - echo Installing dependencies...
+      - pip install -r requirements.txt
+
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Building the project...
+
+  post_build:
+    commands:
+      - echo Deploying to Lambda...
+      - zip -r lambda.zip .
+      - aws lambda update-function-code --function-name Testing-CICD --zip-file fileb://lambda.zip --region us-west-1
+
+artifacts:
+  files:
+    - lambda.zip
+
+# name: Deploy Python Lambda
+
+# on:
+#   push:
+#     branches:
+#       - staging
+# jobs:
+#   deploy:
+#     runs-on: ubuntu-latest
     
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+#     steps:
+#     - name: Checkout code
+#       uses: actions/checkout@v2
     
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.9'  # Choose the Python version you want to use
+#     - name: Set up Python
+#       uses: actions/setup-python@v2
+#       with:
+#         python-version: '3.9'  # Choose the Python version you want to use
     
-    - name: Install dependencies
-      run: |
-        pip install -r requirements.txt
+#     - name: Install dependencies
+#       run: |
+#         pip install -r requirements.txt
     
-    - name: Deploy to Lambda
-      run: |
-        aws lambda update-function-code --function-name Testing-CICD --zip-file fileb://path/to/your/lambda.zip --region us-west-1
-      env:
-        AWS_DEFAULT_REGION: us-west-1
+#     - name: Deploy to Lambda
+#       run: |
+#         aws lambda update-function-code --function-name Testing-CICD --zip-file fileb://path/to/your/lambda.zip --region us-west-1
+#       env:
+#         AWS_DEFAULT_REGION: us-west-1
